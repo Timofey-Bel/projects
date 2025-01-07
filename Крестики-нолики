@@ -1,5 +1,4 @@
-# projects
-# игра крестики нолики
+#Крестики-нолики
 def display_board(board):
     print('\n'*100)
     print(board[1] + ' | ' + board[2] + ' | ' + board[3])
@@ -61,47 +60,55 @@ while True:
     the_board = [' ']*10
     player1_marker, player2_marker = player_input()
 
-    turn = choose_first()
-    print(turn +' Ходит первым')
+turn = choose_first()
+print(turn +' Ходит первым')
 
-    play_game = input('Вы готовы играть? Введите Yes или No ').lower()
+play_game = input('Вы готовы играть? Введите Yes или No ').lower()
 
-    if play_game == 'yes':
-        game_on = True
-    else:
-        game_on = False
+if play_game == 'yes':
+    game_on = True
+else:
+    game_on = False
 
-    while game_on:
-        if turn == 'Игрок 1':
+while game_on:
+    if turn == 'Игрок 1':
+        display_board(the_board)
+        position = player_choice(the_board)
+        place_marker(the_board, player1_marker, position)
+        if win_check(the_board, player1_marker):
             display_board(the_board)
-            position = player_choice(the_board)
-            place_marker(the_board, player1_marker, position)
-            if win_check(the_board, player1_marker):
-                display_board(the_board)
-                print('Игрок 1 выиграл!')
-                game_on = False
-            else:
-                if full_board_check(the_board):
-                    display_board(the_board)
-                    print('Ничья!')
-                    game_on = False
-                else:
-                    turn = 'Игрок 2'
+            print('Игрок 1 выиграл!')
+            game_on = False
         else:
-            display_board(the_board)
-            position = player_choice(the_board)
-            place_marker(the_board, player2_marker, position)
-            if win_check(the_board, player2_marker):
+            if full_board_check(the_board):
                 display_board(the_board)
-                print('Игрок 2 выиграл!')
+                print('Ничья!')
                 game_on = False
             else:
-                if full_board_check(the_board):
-                    display_board(the_board)
-                    print('Ничья!')
-                    game_on = False
-                else:
-                    turn = 'Игрок 1'
+                turn = 'Игрок 2'
+    else:
+        display_board(the_board)
+        position = player_choice(the_board)
+        place_marker(the_board, player2_marker, position)
+        if win_check(the_board, player2_marker):
+            display_board(the_board)
+            print('Игрок 2 выиграл!')
+            game_on = False
+        else:
+            if full_board_check(the_board):
+            	display_board(the_board)
+                print('Ничья!')
+                game_on = False
+            else:
+                turn = 'Игрок 1'
 
-    if not replay():
+if not replay():
         break
+
+
+
+
+
+
+
+
