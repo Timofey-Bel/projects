@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Анализатор комментариев</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📝 Анализатор комментариев</h1>
+            <p>Автоматическая классификация и анализ</p>
+        </header>
+
+        <main>
+            <div class="input-section">
+                <h2>Введите комментарий для анализа</h2>
+                <form id="analyzeForm">
+                    <div class="form-group">
+                        <label for="commentText">Текст комментария:</label>
+                        <textarea 
+                            id="commentText" 
+                            placeholder="Введите текст комментария для анализа..." 
+                            required
+                            rows="5"
+                        ></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="language">Язык анализа:</label>
+                        <select id="language">
+                            <option value="ru">Русский</option>
+                            <option value="en">Английский</option>
+                        </select>
+                    </div>
+                    
+                    <button type="submit" id="analyzeBtn">Анализировать</button>
+                </form>
+            </div>
+
+            <div id="loading" class="hidden">
+                <div class="spinner"></div>
+                <p>Идет анализ комментария...</p>
+            </div>
+
+            <div id="error" class="error hidden"></div>
+
+            <div id="results" class="hidden">
+                <h2>Результаты анализа</h2>
+                
+                <div class="result-section">
+                    <h3>📊 Категории</h3>
+                    <div id="categories" class="result-card"></div>
+                </div>
+
+                <div class="result-section">
+                    <h3>🏷️ Метки</h3>
+                    <div id="labels" class="result-card"></div>
+                </div>
+
+                <div class="result-section">
+                    <h3>🔍 Анализ</h3>
+                    <div id="analysis" class="result-card"></div>
+                </div>
+
+                <div class="result-section">
+                    <h3>⚖️ Модерация</h3>
+                    <div id="moderation" class="result-card"></div>
+                </div>
+
+                <div class="meta-info">
+                    <p>Время обработки: <span id="processingTime">-</span> сек.</p>
+                    <button id="copyJsonBtn">Скопировать JSON</button>
+                </div>
+            </div>
+
+            <div id="history" class="hidden">
+                <h2>📋 История анализов</h2>
+                <div id="historyList"></div>
+            </div>
+        </main>
+    </div>
+<script src="/static/script.js"></script>
+</body>
+</html>
